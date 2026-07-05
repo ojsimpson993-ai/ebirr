@@ -1,0 +1,620 @@
+/* Main Container */
+.login-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+}
+
+/* ==================== HEADER SECTION (GREEN) ==================== */
+.login-header {
+  padding: 3rem 1rem 2rem;
+  text-align: center;
+  background: linear-gradient(135deg, #1B7F3F 0%, #2A9F52 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.logo-large {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  position: relative;
+  z-index: 1;
+}
+
+.ebirr-logo-large {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.ebirr-circle-large {
+  width: 80px;
+  height: 80px;
+  background: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  object-fit: contain;
+  padding: 14px;
+  box-sizing: border-box;
+}
+
+.logo-large-ebirr {
+  color: #ffffff;
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.logo-subtitle {
+  color: #E0F5EB;
+  font-size: 1rem;
+  margin-top: 0.5rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+}
+
+/* ==================== LOGIN FORM SECTION ==================== */
+.login-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 1rem;
+}
+
+.login-title {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 2.5rem;
+  font-weight: 500;
+}
+
+.login-form {
+  width: 100%;
+  max-width: 400px;
+}
+
+/* ==================== BANK SELECTION ==================== */
+.bank-selection-container {
+  margin-bottom: 2rem;
+}
+
+.banks-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.bank-button {
+  padding: 1rem;
+  background: #f5f5f5;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #666;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.bank-button:hover:not(:disabled) {
+  background: #e8f5e9;
+  border-color: #1B7F3F;
+  color: #1B7F3F;
+}
+
+.bank-button.selected {
+  background: #1B7F3F;
+  border-color: #1B7F3F;
+  color: white;
+  box-shadow: 0 4px 12px rgba(27, 127, 63, 0.3);
+}
+
+.bank-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+@media (min-width: 500px) {
+  .banks-grid {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+/* ==================== OTP SENT MESSAGE ==================== */
+.otp-sent-message {
+  background: linear-gradient(135deg, #E0F5EB 0%, #F0FBF8 100%);
+  border: 2px solid #1B7F3F;
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(27, 127, 63, 0.15);
+}
+
+.otp-sent-text {
+  color: #333;
+  font-size: 0.95rem;
+  margin: 0;
+  font-weight: 500;
+}
+
+.otp-sent-text strong {
+  color: #1B7F3F;
+  font-weight: 700;
+}
+
+.otp-instructions {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+/* ==================== PHONE INPUT (ETHIOPIA) ==================== */
+.phone-input-container {
+  position: relative;
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  align-items: center;
+}
+
+.country-code-display {
+  background: #f5f5f5;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  padding: 1rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #333;
+  min-width: 60px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.phone-input-ethiopia {
+  flex: 1;
+  padding: 1rem;
+  border: 2px solid #1B7F3F;
+  border-radius: 8px;
+  font-size: 1rem;
+  color: #333;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  line-height: 1.5;
+  box-sizing: border-box;
+}
+
+.phone-input-ethiopia::placeholder {
+  color: #999;
+}
+
+.phone-input-ethiopia:focus {
+  outline: none;
+  border-color: #0d5a2e;
+  box-shadow: 0 0 0 3px rgba(27, 127, 63, 0.1);
+}
+
+.phone-input-ethiopia:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: #f5f5f5;
+}
+
+/* ==================== OTP INPUT (6-DIGIT) ==================== */
+.otp-input-container {
+  margin-bottom: 1.5rem;
+}
+
+.otp-inputs-wrapper {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.otp-box {
+  width: 50px;
+  height: 55px;
+  border: 2px solid #1B7F3F;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.otp-box:focus {
+  outline: none;
+  border-color: #0d5a2e;
+  box-shadow: 0 0 0 3px rgba(27, 127, 63, 0.1);
+}
+
+.otp-box:disabled {
+  background-color: #f5f5f5;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* ==================== PIN INPUT ==================== */
+.pin-section-login {
+  margin-bottom: 1.5rem;
+}
+
+.pin-label-login {
+  font-size: 0.95rem;
+  color: #555;
+  margin-bottom: 0.75rem;
+  font-weight: 700;
+  display: block;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.pin-input-wrapper-login {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.pin-input-login {
+  flex: 1;
+  padding: 1rem;
+  border: 2px solid #1B7F3F;
+  border-radius: 8px;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #333;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  text-align: center;
+  letter-spacing: 0.2rem;
+}
+
+.pin-input-login[type="password"] {
+  font-size: 2rem;
+  letter-spacing: 0.5rem;
+}
+
+.pin-input-login:focus {
+  outline: none;
+  border-color: #0d5a2e;
+  box-shadow: 0 0 0 3px rgba(27, 127, 63, 0.1);
+}
+
+.pin-input-login:disabled {
+  background-color: #f5f5f5;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.eye-button-login {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.3rem;
+  padding: 0.8rem 0.4rem;
+  transition: opacity 0.2s;
+  flex-shrink: 0;
+}
+
+.eye-button-login:hover:not(:disabled) {
+  opacity: 0.7;
+}
+
+.eye-button-login:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* ==================== LOGIN BUTTONS ==================== */
+.login-button {
+  width: 100%;
+  padding: 1rem;
+  background: linear-gradient(135deg, #1B7F3F 0%, #2A9F52 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
+  margin-top: 1.5rem;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 12px rgba(27, 127, 63, 0.3);
+}
+
+.login-button:hover:not(:disabled) {
+  background: linear-gradient(135deg, #0d5a2e 0%, #1a7a3a 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(27, 127, 63, 0.4);
+}
+
+.login-button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.login-button:disabled {
+  background: #cccccc;
+  cursor: not-allowed;
+  transform: none;
+  opacity: 0.6;
+  box-shadow: none;
+}
+
+.login-button-secondary {
+  width: 100%;
+  padding: 1rem;
+  background: #e8e8e8;
+  color: #666;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-top: 0.75rem;
+}
+
+.login-button-secondary:hover {
+  background: #d0d0d0;
+}
+
+/* ==================== FOOTER SECTION ==================== */
+.login-footer {
+  background: linear-gradient(135deg, #1B7F3F 0%, #2A9F52 100%);
+  padding: 4rem 1rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.wave-decoration {
+  position: absolute;
+  top: -50px;
+  left: 0;
+  right: 0;
+  height: 100px;
+  background: white;
+  border-radius: 0 0 50% 50%;
+}
+
+.footer-content {
+  position: relative;
+  z-index: 1;
+}
+
+.footer-logo {
+  margin-bottom: 2rem;
+}
+
+.footer-logo-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.footer-ebirr-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.footer-ebirr-circle {
+  width: 60px;
+  height: 60px;
+  background: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  object-fit: contain;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.footer-logo-ebirr {
+  color: #ffffff;
+  font-weight: 700;
+  letter-spacing: -1px;
+}
+
+.footer-logo-subtitle {
+  color: #E0F5EB;
+  font-size: 0.95rem;
+  margin-top: 0.5rem;
+  letter-spacing: 0.1em;
+  font-weight: 300;
+}
+
+.footer-text {
+  color: white;
+  font-size: 0.95rem;
+  margin-bottom: 1.5rem;
+}
+
+.terms-text {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.8rem;
+}
+
+.terms-link {
+  color: white;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.terms-link:hover {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* ==================== PROCESSING MODAL ==================== */
+.processing-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  width: 90%;
+  padding: 3rem 2.5rem;
+  text-align: center;
+}
+
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.ebirr-spinner {
+  width: 60px;
+  height: 60px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #1B7F3F;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.processing-title {
+  font-size: 1.75rem;
+  color: #1B7F3F;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.processing-subtitle {
+  color: #666;
+  font-size: 0.95rem;
+  margin-bottom: 2rem;
+}
+
+/* ==================== ERROR MODAL ==================== */
+.error-modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  padding: 20px;
+  animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.error-modal-content {
+  background: white;
+  border-radius: 20px;
+  padding: 40px 30px;
+  max-width: 400px;
+  width: 100%;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(30px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+.error-modal-icon {
+  font-size: 64px;
+  margin-bottom: 20px;
+  animation: bounce 0.5s ease-out;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-10px); }
+}
+
+.error-modal-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #d32f2f;
+  margin-bottom: 15px;
+}
+
+.error-modal-message {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 30px;
+  line-height: 1.5;
+}
+
+.error-modal-button {
+  background: linear-gradient(135deg, #1B7F3F 0%, #2A9F52 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 14px 40px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(27, 127, 63, 0.3);
+}
+
+.error-modal-button:hover {
+  background: linear-gradient(135deg, #0d5a2e 0%, #1a7a3a 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(27, 127, 63, 0.4);
+}
+
+.error-modal-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 10px rgba(27, 127, 63, 0.3);
+}
+
+
+
+/* ==================== MOBILE RESPONSIVE ==================== */
+@media (max-width: 600px) {
+  .logo-large-ebirr      { font-size: 2.5rem; }
+  .ebirr-circle-large    { width: 70px; height: 70px; }
+  .logo-subtitle         { font-size: 0.9rem; }
+  .login-title           { font-size: 1.3rem; }
+  .footer-logo-text      { font-size: 2rem; }
+  .footer-ebirr-circle   { width: 50px; height: 50px; }
+  .footer-logo-subtitle  { font-size: 0.85rem; }
+  .otp-box               { width: 45px; height: 50px; font-size: 1.3rem; }
+  .pin-input-login       { font-size: 1.1rem; }
+  .banks-grid            { grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+  .bank-button           { padding: 0.75rem; font-size: 0.85rem; }
+  .phone-input-container { gap: 0.5rem; }
+  .country-code-display  { min-width: 55px; padding: 1rem 0.5rem; font-size: 0.9rem; }
+  .otp-inputs-wrapper    { gap: 0.4rem; }
+  .otp-sent-message      { padding: 0.75rem 1rem; }
+  .otp-sent-text         { font-size: 0.9rem; }
+  .otp-instructions      { font-size: 0.85rem; margin-bottom: 1rem; }
+}
