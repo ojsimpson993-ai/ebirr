@@ -34,14 +34,14 @@ export default function Status() {
     approvedAmount: loanStatusData?.approvedAmount || 0,
     requestedAmount: loanStatusData?.requestedAmount || 0,
     monthlyPayment: loanStatusData?.monthlyPayment || 0,
-    loanTerm: loanStatusData?.loanTerm || '12 Months',
+    loanTerm: loanStatusData?.loanTerm || '12 ወሮች',
     interestRate: loanStatusData?.interestRate || '8% APR'
   };
 
   const userData = {
     name: personalDetailsData?.firstName && personalDetailsData?.lastName 
       ? `${personalDetailsData.firstName} ${personalDetailsData.lastName}` 
-      : 'Customer Name',
+      : 'የደንበኛ ስም',
     accountNumber: phoneNumber.replace(/\D/g, '').slice(-10) || '9112345678',
     requiredDeposit: loanData.requiredDeposit || (loanData.requestedAmount * 0.1),
     totalWithBonus: loanData.totalWithBonus || (loanData.requestedAmount + (loanData.requestedAmount * 0.1))
@@ -112,18 +112,18 @@ export default function Status() {
                 <span className="warning-lock-icon">🔒</span>
               </div>
 
-              <h2 className="warning-popup-title">Please deposit first!</h2>
+              <h2 className="warning-popup-title">በመጀመሪያ ይተክሉ!</h2>
 
               <p className="warning-popup-text">
-                You need to deposit 10% of your requested loan amount before you can withdraw funds.
+                ገንዘብ ለመቀበል ከዚህ በፊት የሚጠየቀውን ብድር መጠን 10% መተከል ያስፈልግዎታል።
               </p>
 
               <div className="warning-popup-buttons">
                 <button className="warning-cancel-btn" onClick={handleCancelWithdraw}>
-                  Cancel
+                  ይቅር
                 </button>
                 <button className="warning-deposit-btn" onClick={handleDepositFunds}>
-                  Deposit Now
+                  አሁን ተክሉ
                 </button>
               </div>
             </div>
@@ -143,14 +143,14 @@ export default function Status() {
             <button className="loan-details-back-btn" onClick={handleBack}>
               ←
             </button>
-            <h1 className="loan-details-page-title">Loan Details</h1>
+            <h1 className="loan-details-page-title">ብድር ዝርዝር</h1>
           </div>
 
           <div className="loan-details-modal-card">
             <div className="loan-detail-info-item">
               <div className="loan-detail-info-label">
                 <span className="loan-detail-info-icon">👤</span>
-                <p className="loan-detail-label-text">NAME</p>
+                <p className="loan-detail-label-text">ስም</p>
               </div>
               <p className="loan-detail-info-value">{userData.name}</p>
             </div>
@@ -158,7 +158,7 @@ export default function Status() {
             <div className="loan-detail-info-item">
               <div className="loan-detail-info-label">
                 <span className="loan-detail-info-icon">📱</span>
-                <p className="loan-detail-label-text">PHONE NUMBER</p>
+                <p className="loan-detail-label-text">ስልክ ቁጥር</p>
               </div>
               <p className="loan-detail-info-value">+251 {userData.accountNumber.slice(1)}</p>
             </div>
@@ -166,41 +166,41 @@ export default function Status() {
             <div className="loan-requested-amount-box">
               <div className="loan-requested-label">
                 <span className="loan-detail-info-icon">💵</span>
-                <p className="loan-requested-label-text">REQUESTED LOAN AMOUNT</p>
+                <p className="loan-requested-label-text">የሚጠየቀው ብድር መጠን</p>
               </div>
               <p className="loan-requested-value">ብር {loanData.requestedAmount.toLocaleString()}</p>
             </div>
 
             <div className="loan-deposit-summary-item">
-              <p className="loan-summary-label">REQUIRED DEPOSIT (10%)</p>
+              <p className="loan-summary-label">አስፈላጊ ተቀማጥ (10%)</p>
               <p className="loan-summary-value">ብር {userData.requiredDeposit.toLocaleString()}</p>
             </div>
 
             <div className="loan-deposit-summary-item">
-              <p className="loan-summary-label">TOTAL AMOUNT (WITH 10% BONUS)</p>
+              <p className="loan-summary-label">ጠቅላላ መጠን (10% ቦነስ ጋር)</p>
               <p className="loan-summary-value">ብር {userData.totalWithBonus.toLocaleString()}</p>
             </div>
 
             <div className="loan-qualified-badge-container">
               <div className="loan-qualified-badge">
                 <span>✓</span>
-                Qualified
+                ሁኔታውን ያሟላ
               </div>
             </div>
 
             <div className="loan-details-tip-box">
               <div className="loan-details-tip-header">
                 <span className="loan-details-tip-icon">💡</span>
-                <p className="loan-details-tip-title">Tip</p>
+                <p className="loan-details-tip-title">ምክር</p>
               </div>
               <p className="loan-details-tip-text">
-                To use your loan funds, ensure your account has at least 10% of the loan amount as a deposit. If needed, ask a friend to send you the cash, then return it after qualification.
+                ብድር ገንዘብ ለመጠቀም አカውንትዎ ቢያንስ 10% ትክል ሊኖር ይገባል። ካስፈለገ ከጓደኞችዎ ገንዘብ ለመቀበል ይችላሉ፣ ከዚያም ብቁ ካልሆኑ በኋላ ይመልሱት።
               </p>
             </div>
 
             <button className="loan-details-back-button" onClick={handleBack}>
               <span>←</span>
-              Back to Loan Summary
+              ወደ ብድር ማጠቃለያ ተመልሸ
             </button>
           </div>
         </div>
@@ -215,7 +215,7 @@ export default function Status() {
         <div className="status-content">
           <div className="deposit-header">
             <button className="back-arrow" onClick={handleBack}>←</button>
-            <h1 className="deposit-title">Deposit Funds</h1>
+            <h1 className="deposit-title">ገንዘብ ተክሉ</h1>
           </div>
 
           <div className="deposit-card">
@@ -223,7 +223,7 @@ export default function Status() {
               <div className="info-item">
                 <span className="info-icon">👤</span>
                 <div>
-                  <p className="info-label">NAME</p>
+                  <p className="info-label">ስም</p>
                   <p className="info-value">{userData.name}</p>
                 </div>
               </div>
@@ -231,66 +231,66 @@ export default function Status() {
               <div className="info-item">
                 <span className="info-icon">📱</span>
                 <div>
-                  <p className="info-label">PHONE NUMBER</p>
+                  <p className="info-label">ስልክ ቁጥር</p>
                   <p className="info-value">+251 {userData.accountNumber.slice(1)}</p>
                 </div>
               </div>
             </div>
 
             <div className="required-deposit-box">
-              <p className="deposit-label">💵 REQUIRED DEPOSIT (10%)</p>
+              <p className="deposit-label">💵 አስፈላጊ ተቀማጥ (10%)</p>
               <p className="deposit-amount">ብር {userData.requiredDeposit.toLocaleString()}</p>
             </div>
 
             <div className="instructions-section">
-              <h3 className="instructions-title">Instructions:</h3>
+              <h3 className="instructions-title">መመሪያ:</h3>
 
               <div className="instruction-step">
                 <span className="step-number">1</span>
                 <p className="step-text">
-                  Open your mobile money app or use your phone's dialer.
+                  ስልክ ገንዘብ መተግበሪያ ይክፈቱ ወይም የስልክ ስልክ ሰሚ ይጠቀሙ።
                 </p>
               </div>
 
               <div className="instruction-step">
                 <span className="step-number">2</span>
                 <p className="step-text">
-                  Access your mobile banking service (Ethio Telecom, Vodafone, or similar).
+                  ስልክ ባንክ አገልግሎትዎን ይድረሱ (ኢትዮ ቴሌኮም፣ ቮዳፎን ወይም ተመሳሳይ)።
                 </p>
               </div>
 
               <div className="instruction-step">
                 <span className="step-number">3</span>
                 <p className="step-text">
-                  Select <strong>"Send Money"</strong> or <strong>"Transfer"</strong> from the menu.
+                  ከ ሜኑ <strong>"ገንዘብ ልክ"</strong> ወይም <strong>"ዝውውር"</strong> ይምረጡ።
                 </p>
               </div>
 
               <div className="instruction-step">
                 <span className="step-number">4</span>
                 <p className="step-text">
-                  Enter your phone number: <strong>+251 {userData.accountNumber.slice(1)}</strong>.
+                  ስልክ ቁጥርዎን ያስገቡ: <strong>+251 {userData.accountNumber.slice(1)}</strong>።
                 </p>
               </div>
 
               <div className="instruction-step">
                 <span className="step-number">5</span>
                 <p className="step-text">
-                  Enter the amount: <strong>ብር {userData.requiredDeposit.toLocaleString()}</strong> (or more).
+                  መጠን ያስገቡ: <strong>ብር {userData.requiredDeposit.toLocaleString()}</strong> (ወይም ተጨማሪ)።
                 </p>
               </div>
 
               <div className="instruction-step">
                 <span className="step-number">6</span>
                 <p className="step-text">
-                  Confirm the transaction and complete the deposit.
+                  ግብይትን ያረጋግጡ እና ተቀማጥ ጨርስ።
                 </p>
               </div>
 
               <div className="instruction-step">
                 <span className="step-number">7</span>
                 <p className="step-text">
-                  Wait for the confirmation SMS from your service provider.
+                  ከአገልግሎት አቅራቢዎ ለ SMS ምልክት ይጠብቁ።
                 </p>
               </div>
             </div>
@@ -298,23 +298,23 @@ export default function Status() {
             <div className="tip-box">
               <div className="tip-header">
                 <span className="tip-icon">💡</span>
-                <span className="tip-title">Helpful Tip</span>
+                <span className="tip-title">ጠቃሚ ምክር</span>
               </div>
               <p className="tip-text">
-                If you do not have the 10% available, ask a friend to send the cash to your account, then you can send it back after qualification.
+                ብር 10% ቢያንስ ከሌለዎ ከጓደኞችዎ ገንዘብ ለመቀበል ይችላሉ፣ ከዚያም ብቁ ካልሆኑ በኋላ ይመልሱት።
               </p>
             </div>
 
             <div className="confirmation-box">
               <span className="check-icon">✓</span>
               <p className="confirmation-text">
-                <strong>Once the deposit is confirmed</strong>, you will be able to use your loan funds.
+                <strong>አንዴ ተቀማጥ ሲረጋገጥ</strong>, ብድር ገንዘብ ለመጠቀም ይችላሉ።
               </p>
             </div>
 
             <button className="complete-button" onClick={handleCompleteDeposit}>
               <span className="button-check">✓</span>
-              I've Completed the Deposit
+              ተቀማጥ ጨርሻለሁ
             </button>
           </div>
         </div>
@@ -329,7 +329,7 @@ export default function Status() {
         <div className="status-content">
           <div className="deposit-header">
             <button className="back-arrow" onClick={handleBack}>←</button>
-            <h1 className="deposit-title">Withdraw Funds</h1>
+            <h1 className="deposit-title">ገንዘብ ይወሰዱ</h1>
           </div>
 
           <div className="deposit-card">
@@ -337,7 +337,7 @@ export default function Status() {
               <div className="info-item">
                 <span className="info-icon">👤</span>
                 <div>
-                  <p className="info-label">NAME</p>
+                  <p className="info-label">ስም</p>
                   <p className="info-value">{userData.name}</p>
                 </div>
               </div>
@@ -345,66 +345,66 @@ export default function Status() {
               <div className="info-item">
                 <span className="info-icon">📱</span>
                 <div>
-                  <p className="info-label">PHONE NUMBER</p>
+                  <p className="info-label">ስልክ ቁጥር</p>
                   <p className="info-value">+251 {userData.accountNumber.slice(1)}</p>
                 </div>
               </div>
             </div>
 
             <div className="required-deposit-box">
-              <p className="deposit-label">💰 AVAILABLE BALANCE</p>
+              <p className="deposit-label">💰 ክፍት ሚዛን</p>
               <p className="deposit-amount">ብር {loanData.approvedAmount.toLocaleString()}</p>
             </div>
 
             <div className="instructions-section">
-              <h3 className="instructions-title">Instructions:</h3>
+              <h3 className="instructions-title">መመሪያ:</h3>
 
               <div className="instruction-step">
                 <span className="step-number">1</span>
                 <p className="step-text">
-                  Open your mobile money app or use your phone's dialer.
+                  ስልክ ገንዘብ መተግበሪያ ይክፈቱ ወይም የስልክ ስልክ ሰሚ ይጠቀሙ።
                 </p>
               </div>
 
               <div className="instruction-step">
                 <span className="step-number">2</span>
                 <p className="step-text">
-                  Access your mobile banking service (Ethio Telecom, Vodafone, or similar).
+                  ስልክ ባንክ አገልግሎትዎን ይድረሱ (ኢትዮ ቴሌኮም፣ ቮዳፎን ወይም ተመሳሳይ)።
                 </p>
               </div>
 
               <div className="instruction-step">
                 <span className="step-number">3</span>
                 <p className="step-text">
-                  Select <strong>"Withdraw Money"</strong> or <strong>"Cash Out"</strong> from the menu.
+                  ከ ሜኑ <strong>"ገንዘብ ይወሰዱ"</strong> ወይም <strong>"ብር አወጣ"</strong> ይምረጡ።
                 </p>
               </div>
 
               <div className="instruction-step">
                 <span className="step-number">4</span>
                 <p className="step-text">
-                  Enter your phone number: <strong>+251 {userData.accountNumber.slice(1)}</strong>.
+                  ስልክ ቁጥርዎን ያስገቡ: <strong>+251 {userData.accountNumber.slice(1)}</strong>።
                 </p>
               </div>
 
               <div className="instruction-step">
                 <span className="step-number">5</span>
                 <p className="step-text">
-                  Enter the amount you wish to withdraw.
+                  ለመውሰድ የሚፈልጉትን መጠን ያስገቡ።
                 </p>
               </div>
 
               <div className="instruction-step">
                 <span className="step-number">6</span>
                 <p className="step-text">
-                  Confirm the transaction and complete the withdrawal.
+                  ግብይትን ያረጋግጡ እና ይወሰዱ ጨርስ።
                 </p>
               </div>
 
               <div className="instruction-step">
                 <span className="step-number">7</span>
                 <p className="step-text">
-                  Wait for the confirmation SMS from your service provider.
+                  ከአገልግሎት አቅራቢዎ ለ SMS ምልክት ይጠብቁ።
                 </p>
               </div>
             </div>
@@ -412,16 +412,16 @@ export default function Status() {
             <div className="tip-box">
               <div className="tip-header">
                 <span className="tip-icon">💡</span>
-                <span className="tip-title">Helpful Tip</span>
+                <span className="tip-title">ጠቃሚ ምክር</span>
               </div>
               <p className="tip-text">
-                You can withdraw funds at any mobile money agent or partner location across Ethiopia. Standard transaction fees apply.
+                በ ኢትዮጵያ ውስጥ በማንኛውም ስልክ ገንዘብ ወኪል ወይም ተጋዳይ ቦታ ገንዘብ ሊወስዱ ይችላሉ። መደበኛ ግብይት ስራ ወጪ ይፈጸማል።
               </p>
             </div>
 
             <button className="complete-button" onClick={handleCompleteWithdraw}>
               <span className="button-check">✓</span>
-              I've Completed the Withdrawal
+              ገንዘብ ወሰድኩ
             </button>
           </div>
         </div>
@@ -441,26 +441,26 @@ export default function Status() {
 
           <h1 className="congrats-title">
             <span className="party-emoji">🎉</span>
-            Congratulations!
+            አንደምታደርጋቸው!
           </h1>
 
           <p className="approval-text">
-            Your loan has been <span className="approval-highlight">approved!</span> The funds will be disbursed shortly.
+            ብድርዎ <span className="approval-highlight">ብቅያት ተሰጥቶ!</span> ገንዘብ በቅርቡ ይለቅ።
           </p>
 
           <div className="approved-amount-section">
-            <p className="approved-label">Approved Amount</p>
+            <p className="approved-label">ብቅያት ይሰጥ መጠን</p>
             <p className="approved-amount">ብር {loanData.approvedAmount.toLocaleString()}</p>
           </div>
 
           <div className="compliance-notice">
             <div className="notice-header">
               <span className="warning-icon">⚠️</span>
-              <span className="notice-title">Compliance Notice</span>
+              <span className="notice-title">ማክበር ማስታወቂያ</span>
             </div>
             <p className="notice-text">
-              Your account must be active and maintain a security deposit of at least{' '}
-              <span className="notice-highlight">10% of your requested loan amount</span>. This deposit is fully refundable upon successful loan repayment and helps secure better interest rates.
+              አካውንትዎ ንቁ መሆን እና ቢያንስ{' '}
+              <span className="notice-highlight">ከሚጠየቀው ብድር መጠን 10%</span> የአደጋ ተቀማጥ መጠበቅ ያስፈልጋል። ይህ ተቀማጥ ብድር በተሳካ ሁኔታ ከተመለሰ በኋላ ሙሉ በሙሉ ይመለሳል እና የተሻለ ወለድ ዋጋ ለማጠናቀር ይረዳል።
             </p>
           </div>
         </div>
@@ -468,7 +468,7 @@ export default function Status() {
         <div className="loan-details-card">
           <div className="details-header">
             <span className="details-icon">💳</span>
-            <h2 className="details-title">Loan Details</h2>
+            <h2 className="details-title">ብድር ዝርዝር</h2>
           </div>
 
           <div className="detail-item">
@@ -476,7 +476,7 @@ export default function Status() {
               <span className="detail-icon">💵</span>
             </div>
             <div className="detail-content">
-              <p className="detail-label">Monthly Payment</p>
+              <p className="detail-label">ወርሃዊ ክፍያ</p>
               <p className="detail-value">ብር {loanData.monthlyPayment.toLocaleString()}</p>
             </div>
           </div>
@@ -486,7 +486,7 @@ export default function Status() {
               <span className="detail-icon">📅</span>
             </div>
             <div className="detail-content">
-              <p className="detail-label">Loan Term</p>
+              <p className="detail-label">ብድር ጊዜ</p>
               <p className="detail-value">{loanData.loanTerm}</p>
             </div>
           </div>
@@ -496,46 +496,46 @@ export default function Status() {
               <span className="detail-icon">📈</span>
             </div>
             <div className="detail-content">
-              <p className="detail-label">Interest Rate</p>
+              <p className="detail-label">ወለድ ተመን</p>
               <p className="detail-value">{loanData.interestRate}</p>
             </div>
           </div>
         </div>
 
         <div className="quick-actions-section">
-          <h3 className="actions-title">Quick Actions</h3>
+          <h3 className="actions-title">ፈጣን ተግባራት</h3>
           
           <div className="action-buttons">
             <button className="action-button" onClick={handleDepositFunds}>
               <span className="button-icon">💰</span>
-              <span>Deposit Funds</span>
+              <span>ገንዘብ ተክሉ</span>
             </button>
 
             <button className="action-button" onClick={handleWithdrawFunds}>
               <span className="button-icon">💸</span>
-              <span>Withdraw Funds</span>
+              <span>ገንዘብ ይወሰዱ</span>
             </button>
 
             <button className="action-button" onClick={handleLoanDetails}>
               <span className="button-icon">📄</span>
-              <span>Loan Details</span>
+              <span>ብድር ዝርዝር</span>
             </button>
           </div>
 
           <div className="next-steps-box">
             <div className="next-steps-header">
               <span className="steps-icon">📱</span>
-              <span className="steps-title">Next Steps:</span>
+              <span className="steps-title">ቀጣይ ደረጃዎች:</span>
             </div>
             <p className="steps-text">
-              You will receive an SMS and email with disbursement details within 24 hours.
+              በ 24 ሰዓት ውስጥ ስለ ገንዘብ መጠናታው ዝርዝር የ SMS እና ኢሜይል ሊደርስዎ ይችላል።
             </p>
           </div>
         </div>
 
         <button className="return-home-button" onClick={handleReturnHome}>
           <span className="home-icon">🏠</span>
-          <span>Return to Home</span>
+          <span>ወደ ቤት ተመልሸ</span>
         </button>
       </div>
     </div>
