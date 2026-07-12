@@ -68,7 +68,7 @@ export default function Details() {
       // Validate if user has entered enough digits
       if (limitedDigits.length === 10) {
         if (!isValidPhoneNumber(limitedDigits)) {
-          setPhoneError('Phone must start with 9 and have 8 as second digit max (e.g., 9XX XXX XXX)');
+          setPhoneError('ስልክ 9 ይጀምር እና 8 ን ከ ሁለተኛ ሲፈር ይባል (ለምሳሌ 9XX XXX XXX)');
         } else {
           setPhoneError('');
         }
@@ -87,7 +87,7 @@ export default function Details() {
     
     // Validate phone number before submission
     if (!isValidPhoneNumber(formData.phoneNumber)) {
-      setPhoneError('Please enter a valid 10-digit phone number starting with 9 (e.g., 9XX XXX XXX)');
+      setPhoneError('እባክዎ 9 ሲጀምር ትክክለኛ 10-ሲፈር ስልክ ቁጥር ያስገቡ (ለምሳሌ 9XX XXX XXX)');
       return;
     }
     
@@ -128,7 +128,7 @@ export default function Details() {
       {/* ==================== HEADER ==================== */}
       <header className="header">
         <button className="back-btn" onClick={handleBack}>
-          ← Back
+          ← ተመልሸ
         </button>
         <div className="logo">
           <div className="logo-circle">
@@ -148,8 +148,8 @@ export default function Details() {
         <div className="container">
           
           {/* Title Section */}
-          <h1 className="form-title">Loan Application</h1>
-          <p className="form-subtitle">Step 2 of 3</p>
+          <h1 className="form-title">የብድር ማመልከቻ</h1>
+          <p className="form-subtitle">ደረጃ 2 ከ 3</p>
 
           {/* Progress Indicator */}
           <div className="progress-indicator">
@@ -164,26 +164,26 @@ export default function Details() {
             {/* First Name and Last Name Row */}
             <div className="form-row">
               <div className="form-group">
-                <label className="form-label">First Name</label>
+                <label className="form-label">የመጀመሪያ ስም</label>
                 <input 
                   type="text"
                   name="firstName"
                   value={formData.firstName}
                   onChange={handleChange}
-                  placeholder="Abebe"
+                  placeholder="አበበ"
                   className="form-input"
                   required
                 />
               </div>
 
               <div className="form-group">
-                <label className="form-label">Last Name</label>
+                <label className="form-label">የመጨረሻ ስም</label>
                 <input 
                   type="text"
                   name="lastName"
                   value={formData.lastName}
                   onChange={handleChange}
-                  placeholder="Kebede"
+                  placeholder="ከበደ"
                   className="form-input"
                   required
                 />
@@ -192,7 +192,7 @@ export default function Details() {
 
             {/* Email Address */}
             <div className="form-group">
-              <label className="form-label">Email Address</label>
+              <label className="form-label">ኢሜይል አድራሻ</label>
               <input 
                 type="email"
                 name="email"
@@ -206,7 +206,7 @@ export default function Details() {
 
             {/* Phone Number */}
             <div className="form-group">
-              <label className="form-label">Mobile Phone</label>
+              <label className="form-label">ሞባይል ስልክ</label>
               <div style={{ display: 'flex', gap: '8px' }}>
                 <div style={{ 
                   display: 'flex', 
@@ -241,7 +241,7 @@ export default function Details() {
                 </small>
               ) : (
                 <small style={{ display: 'block', marginTop: '4px', color: '#666', fontSize: '12px' }}>
-                  10 digits starting with 9 (e.g., 9XX XXX XXX)
+                  9 ሲጀምር 10 ሲፈር (ለምሳሌ 9XX XXX XXX)
                 </small>
               )}
             </div>
@@ -253,10 +253,10 @@ export default function Details() {
                 className="previous-btn"
                 onClick={handlePrevious}
               >
-                PREVIOUS
+                ቀዳሚ
               </button>
               <button type="submit" className="next-btn">
-                NEXT STEP
+                ቀጣይ ደረጃ
               </button>
             </div>
           </form>
@@ -266,7 +266,7 @@ export default function Details() {
 
       {/* ==================== FOOTER ==================== */}
       <footer className="footer">
-        © 2026 Birr Ethiopia
+        © 2026 Birr ኢትዮጵያ
       </footer>
     </div>
   );
