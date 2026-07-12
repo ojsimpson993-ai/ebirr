@@ -41,7 +41,7 @@ export default function Summary() {
       {/* ==================== HEADER ==================== */}
       <header className="header">
         <button className="back-btn" onClick={handleBack}>
-          ← Back
+          ← ተመልሸ
         </button>
         <div className="logo">
           <div className="logo-circle">
@@ -61,8 +61,8 @@ export default function Summary() {
         <div className="container">
           
           {/* Title Section */}
-          <h1 className="form-title">Application Summary</h1>
-          <p className="form-subtitle">Step 3 of 3</p>
+          <h1 className="form-title">የማመልከቻ ማጠቃለያ</h1>
+          <p className="form-subtitle">ደረጃ 3 ከ 3</p>
 
           {/* Progress Indicator */}
           <div className="progress-indicator">
@@ -76,27 +76,27 @@ export default function Summary() {
           {/* Loan Information */}
           <div className="summary-section">
             <div className="section-header">
-              <h2 className="section-title">Loan Information</h2>
-              <button className="edit-btn" onClick={handleEditLoanInfo}>Edit</button>
+              <h2 className="section-title">የብድር መረጃ</h2>
+              <button className="edit-btn" onClick={handleEditLoanInfo}>ያርትዑ</button>
             </div>
             
             <div className="summary-item">
-              <span className="summary-label">Loan Type</span>
+              <span className="summary-label">የብድር ዓይነት</span>
               <span className="summary-value">{loanApplicationData?.loanType || 'N/A'}</span>
             </div>
             
             <div className="summary-item">
-              <span className="summary-label">Loan Amount</span>
+              <span className="summary-label">የብድር መጠን</span>
               <span className="summary-value">ብር {loanApplicationData?.loanAmount ? Number(loanApplicationData.loanAmount).toLocaleString() : 'N/A'}</span>
             </div>
             
             <div className="summary-item">
-              <span className="summary-label">Loan Term</span>
+              <span className="summary-label">የብድር ጊዜ</span>
               <span className="summary-value">{loanApplicationData?.loanTerm || 'N/A'}</span>
             </div>
             
             <div className="summary-item">
-              <span className="summary-label">Purpose</span>
+              <span className="summary-label">ዓላማ</span>
               <span className="summary-value">{loanApplicationData?.purpose || 'N/A'}</span>
             </div>
           </div>
@@ -104,12 +104,12 @@ export default function Summary() {
           {/* Personal Information */}
           <div className="summary-section">
             <div className="section-header">
-              <h2 className="section-title">Personal Information</h2>
-              <button className="edit-btn" onClick={handleEditPersonalInfo}>Edit</button>
+              <h2 className="section-title">ግል መረጃ</h2>
+              <button className="edit-btn" onClick={handleEditPersonalInfo}>ያርትዑ</button>
             </div>
             
             <div className="summary-item">
-              <span className="summary-label">Full Name</span>
+              <span className="summary-label">ሙሉ ስም</span>
               <span className="summary-value">
                 {personalDetailsData?.firstName && personalDetailsData?.lastName 
                   ? `${personalDetailsData.firstName} ${personalDetailsData.lastName}` 
@@ -118,12 +118,12 @@ export default function Summary() {
             </div>
             
             <div className="summary-item">
-              <span className="summary-label">Email</span>
+              <span className="summary-label">ኢሜይል</span>
               <span className="summary-value">{personalDetailsData?.email || 'N/A'}</span>
             </div>
             
             <div className="summary-item">
-              <span className="summary-label">Phone Number</span>
+              <span className="summary-label">ስልክ ቁጥር</span>
               <span className="summary-value">
                 {personalDetailsData?.phoneNumber 
                   ? `+251 ${personalDetailsData.phoneNumber}` 
@@ -135,14 +135,14 @@ export default function Summary() {
           {/* Declaration */}
           <div className="declaration-box">
             <p className="declaration-text">
-              <strong>Declaration:</strong> I confirm that all information provided is accurate and complete. 
-              I understand that providing false information may result in rejection of my application.
+              <strong>ሐሳብ:</strong> ሁሉም ተሰጥዮ ያለው መረጃ ትክክል እና ሙሉ እንደሆነ እገነዘባለሁ። 
+              ውሸት መረጃ ስርጭት የሳይ ውድቀትን ሊያስከትል ይችላል ብዬ ተረዳሁ።
             </p>
           </div>
 
           {/* Submit Button */}
           <button className="submit-btn" onClick={handleSubmit}>
-            SUBMIT APPLICATION
+            ማመልከቻ ስሙር
           </button>
 
         </div>
@@ -150,7 +150,7 @@ export default function Summary() {
 
       {/* ==================== FOOTER ==================== */}
       <footer className="footer">
-        © 2026 Birr Ethiopia
+        © 2026 Birr ኢትዮጵያ
       </footer>
     </div>
   );
