@@ -31,7 +31,7 @@ export default function LoanCalculator() {
     // Pre-fill loan application form with calculator values
     updateLoanApplicationData({
       loanAmount: loanAmount.toString(),
-      loanTerm: `${loanTerm} Months`
+      loanTerm: `${loanTerm} ወሮች`
     });
     
     navigate('/loan-application');
@@ -57,17 +57,17 @@ export default function LoanCalculator() {
       {/* Main Content */}
       <main className="main-content">
         <div className="container">
-          <h1 className="title">Get Your Loan Approved Fast</h1>
-          <p className="subtitle">Quick approval • Competitive rates • Flexible terms</p>
+          <h1 className="title">በፍጥነት ብድርዎ ብቅያት ሙሙር</h1>
+          <p className="subtitle">ፈጣን ብቅያት • ተወዳዳሪ ዋጋ • 유연한 조건</p>
 
           {/* Loan Calculator */}
           <div className="calculator">
-            <h2 className="calculator-title">Loan Calculator</h2>
+            <h2 className="calculator-title">የብድር ካልኩሌተር</h2>
             
             {/* Loan Amount Slider */}
             <div className="input-group">
               <div className="input-header">
-                <span className="input-label">Loan Amount</span>
+                <span className="input-label">የብድር መጠን</span>
                 <span className="input-value">ብር {loanAmount.toLocaleString()}</span>
               </div>
               <input 
@@ -88,8 +88,8 @@ export default function LoanCalculator() {
             {/* Loan Term Slider */}
             <div className="input-group">
               <div className="input-header">
-                <span className="input-label">Loan Term</span>
-                <span className="input-value">{loanTerm} months</span>
+                <span className="input-label">የብድር ጊዜ</span>
+                <span className="input-value">{loanTerm} ወሮች</span>
               </div>
               <input 
                 type="range" 
@@ -100,37 +100,37 @@ export default function LoanCalculator() {
                 className="slider"
               />
               <div className="range-labels">
-                <span>6 months</span>
-                <span>60 months</span>
+                <span>6 ወሮች</span>
+                <span>60 ወሮች</span>
               </div>
             </div>
 
             {/* Monthly Payment Display */}
             <div className="payment-box">
-              <span className="payment-label">Monthly Payment</span>
+              <span className="payment-label">ወርሃዊ ክፍያ</span>
               <span className="payment-amount">ብር {Number(calculateMonthlyPayment()).toLocaleString()}</span>
             </div>
           </div>
 
           {/* Apply Button */}
-          <button className="apply-btn" onClick={handleApplyNow}>APPLY NOW</button>
+          <button className="apply-btn" onClick={handleApplyNow}>ዛሬ ወድ</button>
 
           {/* Features */}
           <div className="features">
             <div className="feature">
               <div className="feature-icon">⚡</div>
-              <div className="feature-title">Fast Approval</div>
-              <div className="feature-subtitle">Within 24 hours</div>
+              <div className="feature-title">ፈጣን ብቅያት</div>
+              <div className="feature-subtitle">24 ሰዓት ውስጥ</div>
             </div>
             <div className="feature">
               <div className="feature-icon">💰</div>
-              <div className="feature-title">Low Rates</div>
-              <div className="feature-subtitle">From 8%</div>
+              <div className="feature-title">ዝቅተኛ ስጋ</div>
+              <div className="feature-subtitle">8% ይጀምሩ</div>
             </div>
             <div className="feature">
               <div className="feature-icon">🔒</div>
-              <div className="feature-title">Secure</div>
-              <div className="feature-subtitle">Bank-level</div>
+              <div className="feature-title">ደህንነት</div>
+              <div className="feature-subtitle">ባንክ-ደረጃ</div>
             </div>
           </div>
         </div>
@@ -138,7 +138,7 @@ export default function LoanCalculator() {
 
       {/* Footer */}
       <footer className="footer">
-        © 2026 Birr Ethiopia
+        © 2026 Birr ኢትዮጵያ
       </footer>
     </div>
   );
