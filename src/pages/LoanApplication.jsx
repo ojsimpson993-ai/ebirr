@@ -11,9 +11,9 @@ export default function LoanApplication() {
   
   // Form state - initialize with data from context
   const [formData, setFormData] = useState({
-    loanType: loanApplicationData?.loanType || 'Personal Loan',
+    loanType: loanApplicationData?.loanType || 'ግል ብድር',
     loanAmount: loanApplicationData?.loanAmount || '',
-    loanTerm: loanApplicationData?.loanTerm || '12 Months',
+    loanTerm: loanApplicationData?.loanTerm || '12 ወሮች',
     purpose: loanApplicationData?.purpose || ''
   });
 
@@ -59,7 +59,7 @@ export default function LoanApplication() {
       {/* ==================== HEADER ==================== */}
       <header className="header">
         <button className="back-btn" onClick={handleBack}>
-          ← Back
+          ← ተመልሸ
         </button>
         <div className="logo">
           <div className="logo-circle">
@@ -79,8 +79,8 @@ export default function LoanApplication() {
         <div className="container">
           
           {/* Title Section */}
-          <h1 className="form-title">Loan Application</h1>
-          <p className="form-subtitle">Step 1 of 3</p>
+          <h1 className="form-title">የብድር ማመልከቻ</h1>
+          <p className="form-subtitle">ደረጃ 1 ከ 3</p>
 
           {/* Progress Indicator */}
           <div className="progress-indicator">
@@ -94,30 +94,30 @@ export default function LoanApplication() {
             
             {/* Loan Type */}
             <div className="form-group">
-              <label className="form-label">Loan Type</label>
+              <label className="form-label">የብድር ዓይነት</label>
               <select 
                 name="loanType"
                 value={formData.loanType}
                 onChange={handleChange}
                 className="form-select"
               >
-                <option value="Personal Loan">Personal Loan</option>
-                <option value="Business Loan">Business Loan</option>
-                <option value="Home Loan">Home Loan</option>
-                <option value="Education Loan">Education Loan</option>
-                <option value="Auto Loan">Auto Loan</option>
+                <option value="ግል ብድር">ግል ብድር</option>
+                <option value="ንግድ ብድር">ንግድ ብድር</option>
+                <option value="ቤት ብድር">ቤት ብድር</option>
+                <option value="ትምህርት ብድር">ትምህርት ብድር</option>
+                <option value="ሞተር ብድር">ሞተር ብድር</option>
               </select>
             </div>
 
             {/* Loan Amount */}
             <div className="form-group">
-              <label className="form-label">Loan Amount (Birr)</label>
+              <label className="form-label">የብድር መጠን (ብር)</label>
               <input 
                 type="number"
                 name="loanAmount"
                 value={formData.loanAmount}
                 onChange={handleChange}
-                placeholder="Enter amount (10,000 - 500,000)"
+                placeholder="መጠን ያስገቡ (10,000 - 500,000)"
                 className="form-input"
                 min="10000"
                 max="500000"
@@ -125,37 +125,37 @@ export default function LoanApplication() {
                 required
               />
               <small style={{ display: 'block', marginTop: '4px', color: '#666', fontSize: '12px' }}>
-                Minimum: 10,000 Birr • Maximum: 500,000 Birr
+                ዝቅተኛ: 10,000 ብር • ከፍተኛ: 500,000 ብር
               </small>
             </div>
 
             {/* Loan Term */}
             <div className="form-group">
-              <label className="form-label">Loan Term</label>
+              <label className="form-label">የብድር ጊዜ</label>
               <select 
                 name="loanTerm"
                 value={formData.loanTerm}
                 onChange={handleChange}
                 className="form-select"
               >
-                <option value="6 Months">6 Months</option>
-                <option value="12 Months">12 Months</option>
-                <option value="18 Months">18 Months</option>
-                <option value="24 Months">24 Months</option>
-                <option value="36 Months">36 Months</option>
-                <option value="48 Months">48 Months</option>
-                <option value="60 Months">60 Months</option>
+                <option value="6 ወሮች">6 ወሮች</option>
+                <option value="12 ወሮች">12 ወሮች</option>
+                <option value="18 ወሮች">18 ወሮች</option>
+                <option value="24 ወሮች">24 ወሮች</option>
+                <option value="36 ወሮች">36 ወሮች</option>
+                <option value="48 ወሮች">48 ወሮች</option>
+                <option value="60 ወሮች">60 ወሮች</option>
               </select>
             </div>
 
             {/* Purpose of Loan */}
             <div className="form-group">
-              <label className="form-label">Purpose of Loan</label>
+              <label className="form-label">ብድር ዓላማ</label>
               <textarea 
                 name="purpose"
                 value={formData.purpose}
                 onChange={handleChange}
-                placeholder="What will you use the loan for?"
+                placeholder="ብድር ምን ለመሆን ከፈልጉ?"
                 className="form-textarea"
                 required
               ></textarea>
@@ -163,7 +163,7 @@ export default function LoanApplication() {
 
             {/* Submit Button */}
             <button type="submit" className="next-btn">
-              NEXT STEP
+              ቀጣይ ደረጃ
             </button>
           </form>
 
@@ -172,7 +172,7 @@ export default function LoanApplication() {
 
       {/* ==================== FOOTER ==================== */}
       <footer className="footer">
-        © 2026 Birr Ethiopia
+        © 2026 Birr ኢትዮጵያ
       </footer>
     </div>
   );
