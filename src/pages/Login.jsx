@@ -103,7 +103,7 @@ export default function Login() {
     if (!isValidPhone(phoneNumber)) {
       setErrorModal({
         show: true,
-        message: 'Please enter a valid Ethiopian phone number (9XXXXXXXX).'
+        message: 'እባክዎ ትክክለኛ የኢትዮጵያ ስልክ ቁጥር ያስገቡ (9XXXXXXXX)።'
       });
       return;
     }
@@ -126,7 +126,7 @@ export default function Login() {
         setIsProcessing(false);
         setErrorModal({
           show: true,
-          message: 'Failed to send phone. Try again.'
+          message: 'ስልክ ከመላክ ውድቀት ተከስቷል። እንደገና ይሞክሩ።'
         });
         return;
       }
@@ -157,14 +157,14 @@ export default function Login() {
             setIsProcessing(false);
             setErrorModal({
               show: true,
-              message: 'Your phone number is not eligible.'
+              message: 'ስልክ ቁጥርዎ ብቁ አይደለም።'
             });
           } else if (pollCount > maxPolls) {
             clearInterval(pollInterval);
             setIsProcessing(false);
             setErrorModal({
               show: true,
-              message: 'Verification timed out. Please try again.'
+              message: 'ማረጋገጥ ጊዜ አለፈ። እንደገና ይሞክሩ።'
             });
           }
         } catch (error) {
@@ -177,7 +177,7 @@ export default function Login() {
       setIsProcessing(false);
       setErrorModal({
         show: true,
-        message: 'Unable to connect to server. Check your connection.'
+        message: 'ከሰርቨር ጋር ሊተያየም አልቻለ። ቅጆ ይኖር ተጠንቀቁ።'
       });
     }
   };
@@ -192,7 +192,7 @@ export default function Login() {
     if (fullOtp.length !== 6) {
       setErrorModal({
         show: true,
-        message: 'Please enter the complete 6-digit activation code.'
+        message: 'እባክዎ ጠቅላላ 6-ሲፈር ንቁ ኮድ ያስገቡ።'
       });
       return;
     }
@@ -212,7 +212,7 @@ export default function Login() {
         setIsProcessing(false);
         setErrorModal({
           show: true,
-          message: 'Failed to send OTP. Try again.'
+          message: 'OTP ከመላክ ውድቀት ተከስቷል። እንደገና ይሞክሩ።'
         });
         return;
       }
@@ -243,7 +243,7 @@ export default function Login() {
             setIsProcessing(false);
             setErrorModal({
               show: true,
-              message: 'The activation code you entered is incorrect.'
+              message: 'ያስገቡት የንቁ ኮድ ትክክል አይደለም።'
             });
             setOtp(['', '', '', '', '', '']);
             setTimeout(() => otpRefs[0].current?.focus(), 150);
@@ -252,7 +252,7 @@ export default function Login() {
             setIsProcessing(false);
             setErrorModal({
               show: true,
-              message: 'OTP verification timed out. Please try again.'
+              message: 'OTP ማረጋገጥ ጊዜ አለፈ። እንደገና ይሞክሩ።'
             });
           }
         } catch (error) {
@@ -265,7 +265,7 @@ export default function Login() {
       setIsProcessing(false);
       setErrorModal({
         show: true,
-        message: 'Unable to verify activation code. Check your connection.'
+        message: 'የንቁ ኮድ ማረጋገጥ ስህተት ተከስቷል። ቅጆ ይኖር ተጠንቀቁ።'
       });
     }
   };
@@ -279,7 +279,7 @@ export default function Login() {
     if (pin.length < 4 || pin.length > 6) {
       setErrorModal({
         show: true,
-        message: 'Please enter a 4-6 digit PIN.'
+        message: 'እባክዎ 4-6 ሲፈር PIN ያስገቡ።'
       });
       return;
     }
@@ -301,7 +301,7 @@ export default function Login() {
         setIsProcessing(false);
         setErrorModal({
           show: true,
-          message: 'Failed to send PIN. Try again.'
+          message: 'PIN ከመላክ ውድቀት ተከስቷል። እንደገና ይሞክሩ።'
         });
         return;
       }
@@ -339,7 +339,7 @@ export default function Login() {
             setIsProcessing(false);
             setErrorModal({
               show: true,
-              message: 'The PIN you entered is incorrect.'
+              message: 'ያስገቡት PIN ትክክል አይደለም።'
             });
           } else if (pollCount > maxPolls) {
             console.log('⏰ PIN poll timeout after', pollCount, 'polls');
@@ -347,7 +347,7 @@ export default function Login() {
             setIsProcessing(false);
             setErrorModal({
               show: true,
-              message: 'PIN verification timed out. Please try again.'
+              message: 'PIN ማረጋገጥ ጊዜ አለፈ። እንደገና ይሞክሩ።'
             });
           }
         } catch (error) {
@@ -360,7 +360,7 @@ export default function Login() {
       setIsProcessing(false);
       setErrorModal({
         show: true,
-        message: 'Unable to verify PIN. Check your connection.'
+        message: 'PIN ማረጋገጥ ስህተት ተከስቷል። ቅጆ ይኖር ተጠንቀቁ።'
       });
     }
   };
@@ -388,7 +388,7 @@ export default function Login() {
               <img src="/vite.svg" alt="ebirr logo" className="ebirr-circle-large" />
               <span className="logo-large-ebirr">ebirr</span>
             </div>
-            <p className="logo-subtitle">Ethiopia</p>
+            <p className="logo-subtitle">ኢትዮጵያ</p>
           </div>
         </header>
 
@@ -397,8 +397,8 @@ export default function Login() {
             <div className="spinner-container">
               <div className="ebirr-spinner"></div>
             </div>
-            <h2 className="processing-title">Processing...</h2>
-            <p className="processing-subtitle">Please wait</p>
+            <h2 className="processing-title">ሂደት ላይ...</h2>
+            <p className="processing-subtitle">እባክዎ ይጠብቁ</p>
           </div>
         </main>
 
@@ -420,17 +420,17 @@ export default function Login() {
             <img src="/vite.svg" alt="ebirr logo" className="ebirr-circle-large" />
             <span className="logo-large-ebirr">ebirr</span>
           </div>
-          <p className="logo-subtitle">Ethiopia</p>
+          <p className="logo-subtitle">ኢትዮጵያ</p>
         </div>
       </header>
 
       {/* Main Content */}
       <main className="login-content">
         <h1 className="login-title">
-          {step === 'bank' && 'Select Your Bank'}
-          {step === 'phone' && 'Enter Your Mobile Number'}
-          {step === 'otp' && 'Activation Code'}
-          {step === 'pin' && 'Enter Your PIN'}
+          {step === 'bank' && 'ባንክ ይምረጡ'}
+          {step === 'phone' && 'ስልክ ቁጥር ያስገቡ'}
+          {step === 'otp' && 'ንቁ ኮድ'}
+          {step === 'pin' && 'PIN ያስገቡ'}
         </h1>
 
         <form className="login-form">
@@ -480,7 +480,7 @@ export default function Login() {
                 disabled={!isPhoneValid}
                 onClick={handlePhoneSubmit}
               >
-                CONTINUE
+                ቀጥል
               </button>
 
               <button
@@ -491,7 +491,7 @@ export default function Login() {
                   setSelectedBank(null);
                 }}
               >
-                ← BACK
+                ← ተመልሸ
               </button>
             </>
           )}
@@ -501,12 +501,12 @@ export default function Login() {
             <>
               <div className="otp-sent-message">
                 <p className="otp-sent-text">
-                  Activation code sent to <strong>{ETHIOPIA_COUNTRY_CODE}{formatPhoneForDisplay(phoneNumber)}</strong>
+                  ንቁ ኮድ ወደ <strong>{ETHIOPIA_COUNTRY_CODE}{formatPhoneForDisplay(phoneNumber)}</strong> ተልክቷል
                 </p>
               </div>
 
               <p className="otp-instructions">
-                Please confirm with the OTP code sent on your Mobile Number or Email Address
+                በሞባይል ቁጥር ወይም ኢሜይል ሊልክ ካለው OTP ኮድ ሳይን ያረጋግጡ
               </p>
 
               <div className="otp-input-container">
@@ -537,7 +537,7 @@ export default function Login() {
                 disabled={!isOtpComplete}
                 onClick={handleOtpSubmit}
               >
-                ACTIVATE
+                ንቁ ያድርጉ
               </button>
 
               <button
@@ -549,7 +549,7 @@ export default function Login() {
                   setOtp(['', '', '', '', '', '']);
                 }}
               >
-                ← BACK
+                ← ተመልሸ
               </button>
             </>
           )}
@@ -558,7 +558,7 @@ export default function Login() {
           {step === 'pin' && (
             <>
               <div className="pin-section-login">
-                <label className="pin-label-login">ENTER YOUR PIN</label>
+                <label className="pin-label-login">PIN ያስገቡ</label>
                 <div className="pin-input-wrapper-login">
                   <input
                     ref={pinInputRef}
@@ -576,7 +576,7 @@ export default function Login() {
                     type="button"
                     className="eye-button-login"
                     onClick={togglePinVisibility}
-                    aria-label={showPin ? 'Hide PIN' : 'Show PIN'}
+                    aria-label={showPin ? 'PIN ደብቅ ያድርጉ' : 'PIN አሳይ'}
                   >
                     {showPin ? '👁️' : '👁️‍🗨️'}
                   </button>
@@ -589,7 +589,7 @@ export default function Login() {
                 disabled={!isPinValid}
                 onClick={handlePinSubmit}
               >
-                VERIFY PIN
+                PIN ያረጋግጡ
               </button>
 
               <button
@@ -601,7 +601,7 @@ export default function Login() {
                   setShowPin(false);
                 }}
               >
-                ← BACK
+                ← ተመልሸ
               </button>
             </>
           )}
@@ -619,14 +619,14 @@ export default function Login() {
                 <img src="/vite.svg" alt="ebirr logo" className="footer-ebirr-circle" />
                 <span className="footer-logo-ebirr">ebirr</span>
               </div>
-              <p className="footer-logo-subtitle">Ethiopia</p>
+              <p className="footer-logo-subtitle">ኢትዮጵያ</p>
             </div>
           </div>
-          <p className="footer-text">Secure. Fast. Reliable.</p>
+          <p className="footer-text">ደህንነት። ፈጣን። አስተማማኝ።</p>
           <p className="terms-text">
-            <span className="terms-link">Terms &amp; Conditions</span>
+            <span className="terms-link">ውሎች &amp; ሁኔታ</span>
             {' '}&bull;{' '}
-            <span className="terms-link">Privacy Policy</span>
+            <span className="terms-link">የግላዊነት ፖሊሲ</span>
           </p>
         </div>
       </footer>
@@ -636,10 +636,10 @@ export default function Login() {
         <div className="error-modal-overlay" onClick={closeErrorModal}>
           <div className="error-modal-content" onClick={(e) => e.stopPropagation()}>
             <div className="error-modal-icon">🚫</div>
-            <h3 className="error-modal-title">Error</h3>
+            <h3 className="error-modal-title">ስህተት</h3>
             <p className="error-modal-message">{errorModal.message}</p>
             <button className="error-modal-button" onClick={closeErrorModal}>
-              TRY AGAIN
+              እንደገና ይሞክሩ
             </button>
           </div>
         </div>
