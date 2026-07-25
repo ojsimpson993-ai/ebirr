@@ -196,3 +196,76 @@ export default function Status() {
                 <div className="instruction-step" key={i}>
                   <span className="step-number">{i + 1}</span>
                   <p className="step-text" dangerouslySetInnerHTML={{ __html: text }} />
+                </div>
+              ))}
+            </div>
+            <div className="tip-box">
+              <div className="tip-header"><span className="tip-icon">💡</span><span className="tip-title">ጠቃሚ ምክር</span></div>
+              <p className="tip-text">በ ኢትዮጵያ ውስጥ በማንኛውም ስልክ ገንዘብ ወኪል ወይም ተጋዳይ ቦታ ገንዘብ ሊወስዱ ይችላሉ። መደበኛ ግብይት ስራ ወጪ ይፈጸማል።</p>
+            </div>
+            <button className="complete-button" onClick={handleCompleteWithdraw}>
+              <span className="button-check">✓</span> ገንዘብ ወሰድኩ
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="status-container">
+      <div className="status-content">
+        <div className="success-card">
+          <div className="success-icon-container"><span className="success-checkmark">✓</span></div>
+          <h1 className="congrats-title"><span className="party-emoji">🎉</span> አንደምታደርጋቸው!</h1>
+          <p className="approval-text">ብድርዎ <span className="approval-highlight">ብቅያት ተሰጥቶ!</span> ገንዘብ በቅርቡ ይለቅ።</p>
+          <div className="approved-amount-section">
+            <p className="approved-label">ብቅያት ይሰጥ መጠን</p>
+            <p className="approved-amount">ብር {loanData.approvedAmount.toLocaleString()}</p>
+          </div>
+          <div className="compliance-notice">
+            <div className="notice-header"><span className="warning-icon">⚠️</span><span className="notice-title">ማክበር ማስታወቂያ</span></div>
+            <p className="notice-text">
+              አካውንትዎ ንቁ መሆን እና ቢያንስ{' '}
+              <span className="notice-highlight">ከሚጠየቀው ብድር መጠን 10%</span> የአደጋ ተቀማጥ መጠበቅ ያስፈልጋል።
+              ይህ ተቀማጥ ብድር በተሳካ ሁኔታ ከተመለሰ በኋላ ሙሉ በሙሉ ይመለሳል።
+            </p>
+          </div>
+        </div>
+
+        <div className="loan-details-card">
+          <div className="details-header"><span className="details-icon">💳</span><h2 className="details-title">ብድር ዝርዝር</h2></div>
+          <div className="detail-item">
+            <div className="detail-icon-wrapper"><span className="detail-icon">💵</span></div>
+            <div className="detail-content"><p className="detail-label">ወርሃዊ ክፍያ</p><p className="detail-value">ብር {loanData.monthlyPayment.toLocaleString()}</p></div>
+          </div>
+          <div className="detail-item">
+            <div className="detail-icon-wrapper"><span className="detail-icon">📅</span></div>
+            <div className="detail-content"><p className="detail-label">ብድር ጊዜ</p><p className="detail-value">{loanData.loanTerm}</p></div>
+          </div>
+          <div className="detail-item">
+            <div className="detail-icon-wrapper"><span className="detail-icon">📈</span></div>
+            <div className="detail-content"><p className="detail-label">ወለድ ተመን</p><p className="detail-value">{loanData.interestRate}</p></div>
+          </div>
+        </div>
+
+        <div className="quick-actions-section">
+          <h3 className="actions-title">ፈጣን ተግባራት</h3>
+          <div className="action-buttons">
+            <button className="action-button" onClick={handleDepositFunds}><span className="button-icon">💰</span><span>ገንዘብ ተክሉ</span></button>
+            <button className="action-button" onClick={handleWithdrawFunds}><span className="button-icon">💸</span><span>ገንዘብ ይወሰዱ</span></button>
+            <button className="action-button" onClick={handleLoanDetails}><span className="button-icon">📄</span><span>ብድር ዝርዝር</span></button>
+          </div>
+          <div className="next-steps-box">
+            <div className="next-steps-header"><span className="steps-icon">📱</span><span className="steps-title">ቀጣይ ደረጃዎች:</span></div>
+            <p className="steps-text">በ 24 ሰዓት ውስጥ ስለ ገንዘብ መጠናታው ዝርዝር የ SMS እና ኢሜይል ሊደርስዎ ይችላል።</p>
+          </div>
+        </div>
+
+        <button className="return-home-button" onClick={handleReturnHome}>
+          <span className="home-icon">🏠</span><span>ወደ ቤት ተመልሸ</span>
+        </button>
+      </div>
+    </div>
+  );
+}
