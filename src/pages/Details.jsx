@@ -1,135 +1,74 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useLoanApplication } from '../LoanApplicationContext';
+import { useUserId } from '../hooks/useUserId';
 import './Details.css';
 
 export default function Details() {
   const navigate = useNavigate();
-  
-  // Get context data and functions
+  const { userId } = useUserId();
   const { personalDetailsData, updatePersonalDetailsData } = useLoanApplication();
-  
-  // Form state for Step 2 - initialize with context data
+
   const [formData, setFormData] = useState({
-    firstName: personalDetailsData?.firstName || '',
-    lastName: personalDetailsData?.lastName || '',
-    email: personalDetailsData?.email || '',
+    firstName:   personalDetailsData?.firstName   || '',
+    lastName:    personalDetailsData?.lastName    || '',
+    email:       personalDetailsData?.email       || '',
     phoneNumber: personalDetailsData?.phoneNumber || ''
   });
 
-  // State for phone validation error
   const [phoneError, setPhoneError] = useState('');
 
-  // Validate Ethiopian phone number format
-  // Ethiopian mobile: 10 digits starting with 9, second digit 1-8
   const isValidPhoneNumber = (phone) => {
     const digits = phone.replace(/\D/g, '');
-    
-    // Must be exactly 10 digits
     if (digits.length !== 10) return false;
-    
-    // Must start with 9
     if (!digits.startsWith('9')) return false;
-    
-    // Second digit must be 1-8 (for mobile numbers)
     const secondDigit = parseInt(digits[1]);
     if (secondDigit < 1 || secondDigit > 8) return false;
-    
     return true;
   };
 
-  // Normalize phone number (already in 10-digit format)
-  const normalizePhoneNumber = (phone) => {
-    const digits = phone.replace(/\D/g, '');
-    return digits;
-  };
+  const normalizePhoneNumber = (phone) => phone.replace(/\D/g, '');
 
-  // Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
-    
-    // Special handling for phone number
     if (name === 'phoneNumber') {
-      // Remove any non-digit characters
-      const digitsOnly = value.replace(/\D/g, '');
-      // Limit to 10 digits
+      const digitsOnly    = value.replace(/\D/g, '');
       const limitedDigits = digitsOnly.slice(0, 10);
-      
-      setFormData(prev => ({
-        ...prev,
-        [name]: limitedDigits
-      }));
-      
-      // Clear error when user starts typing
-      if (phoneError) {
-        setPhoneError('');
-      }
-      
-      // Validate if user has entered enough digits
-      if (limitedDigits.length === 10) {
-        if (!isValidPhoneNumber(limitedDigits)) {
-          setPhoneError('ስልክ 9 ይጀምር እና 8 ን ከ ሁለተኛ ሲፈር ይባል (ለምሳሌ 9XX XXX XXX)');
-        } else {
-          setPhoneError('');
-        }
+      setFormData(prev => ({ ...prev, [name]: limitedDigits }));
+      if (phoneError) setPhoneError('');
+      if (limitedDigits.length === 10 && !isValidPhoneNumber(limitedDigits)) {
+        setPhoneError('ስልክ 9 ይጀምር እና 8 ን ከ ሁለተኛ ሲፈር ይባል (ለምሳሌ 9XX XXX XXX)');
       }
     } else {
-      setFormData(prev => ({
-        ...prev,
-        [name]: value
-      }));
+      setFormData(prev => ({ ...prev, [name]: value }));
     }
   };
 
-  // Handle form submission (Next)
   const handleNext = (e) => {
     e.preventDefault();
-    
-    // Validate phone number before submission
     if (!isValidPhoneNumber(formData.phoneNumber)) {
       setPhoneError('እባክዎ 9 ሲጀምር ትክክለኛ 10-ሲፈር ስልክ ቁጥር ያስገቡ (ለምሳሌ 9XX XXX XXX)');
       return;
     }
-    
-    // Normalize phone number before saving
-    const normalizedPhone = normalizePhoneNumber(formData.phoneNumber);
-    
-    // Save personal details to context with normalized phone
-    updatePersonalDetailsData({
-      ...formData,
-      phoneNumber: normalizedPhone
-    });
-    
-    // Navigate to summary
-    navigate('/summary');
+    updatePersonalDetailsData({ ...formData, phoneNumber: normalizePhoneNumber(formData.phoneNumber) });
+    navigate(`/${userId}/summary`);
   };
 
-  // Handle previous button
   const handlePrevious = () => {
-    // Normalize phone number before saving if valid
     let dataToSave = { ...formData };
     if (formData.phoneNumber && isValidPhoneNumber(formData.phoneNumber)) {
       dataToSave.phoneNumber = normalizePhoneNumber(formData.phoneNumber);
     }
-    
-    // Save current data before going back
     updatePersonalDetailsData(dataToSave);
     navigate(-1);
   };
 
-  // Handle back button
-  const handleBack = () => {
-    navigate('/');
-  };
+  const handleBack = () => navigate(`/${userId}`);
 
   return (
     <div className="app-container">
-      
-      {/* ==================== HEADER ==================== */}
       <header className="header">
-        <button className="back-btn" onClick={handleBack}>
-          ← ተመልሸ
-        </button>
+        <button className="back-btn" onClick={handleBack}>← ተመልሸ</button>
         <div className="logo">
           <div className="logo-circle">
             <img src="/vite.svg" alt="Birr" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
@@ -143,131 +82,67 @@ export default function Details() {
         </button>
       </header>
 
-      {/* ==================== MAIN CONTENT ==================== */}
       <main className="main-content">
         <div className="container">
-          
-          {/* Title Section */}
           <h1 className="form-title">የብድር ማመልከቻ</h1>
           <p className="form-subtitle">ደረጃ 2 ከ 3</p>
-
-          {/* Progress Indicator */}
           <div className="progress-indicator">
             <div className="progress-dot active"></div>
             <div className="progress-dot active"></div>
             <div className="progress-dot"></div>
           </div>
 
-          {/* Application Form */}
           <form onSubmit={handleNext}>
-            
-            {/* First Name and Last Name Row */}
             <div className="form-row">
               <div className="form-group">
                 <label className="form-label">የመጀመሪያ ስም</label>
-                <input 
-                  type="text"
-                  name="firstName"
-                  value={formData.firstName}
-                  onChange={handleChange}
-                  placeholder="አበበ"
-                  className="form-input"
-                  required
-                />
+                <input type="text" name="firstName" value={formData.firstName}
+                  onChange={handleChange} placeholder="አበበ" className="form-input" required />
               </div>
-
               <div className="form-group">
                 <label className="form-label">የመጨረሻ ስም</label>
-                <input 
-                  type="text"
-                  name="lastName"
-                  value={formData.lastName}
-                  onChange={handleChange}
-                  placeholder="ከበደ"
-                  className="form-input"
-                  required
-                />
+                <input type="text" name="lastName" value={formData.lastName}
+                  onChange={handleChange} placeholder="ከበደ" className="form-input" required />
               </div>
             </div>
 
-            {/* Email Address */}
             <div className="form-group">
               <label className="form-label">ኢሜይል አድራሻ</label>
-              <input 
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                placeholder="abebe.kebede@example.com"
-                className="form-input"
-                required
-              />
+              <input type="email" name="email" value={formData.email}
+                onChange={handleChange} placeholder="abebe.kebede@example.com" className="form-input" required />
             </div>
 
-            {/* Phone Number */}
             <div className="form-group">
               <label className="form-label">ሞባይል ስልክ</label>
               <div style={{ display: 'flex', gap: '8px' }}>
-                <div style={{ 
-                  display: 'flex', 
-                  alignItems: 'center', 
-                  padding: '12px 16px', 
-                  backgroundColor: '#f5f5f5',
-                  border: '2px solid #e0e0e0',
-                  borderRadius: '8px',
-                  fontWeight: '600',
-                  color: '#40A152'
-                }}>
+                <div style={{ display: 'flex', alignItems: 'center', padding: '12px 16px',
+                  backgroundColor: '#f5f5f5', border: '2px solid #e0e0e0', borderRadius: '8px',
+                  fontWeight: '600', color: '#40A152' }}>
                   +251
                 </div>
-                <input 
-                  type="tel"
-                  name="phoneNumber"
-                  value={formData.phoneNumber}
-                  placeholder="9XX XXX XXX"
-                  onChange={handleChange}
+                <input type="tel" name="phoneNumber" value={formData.phoneNumber}
+                  placeholder="9XX XXX XXX" onChange={handleChange}
                   className={`form-input ${phoneError ? 'error-input' : ''}`}
-                  style={{ 
-                    flex: 1,
-                    borderColor: phoneError ? '#dc3545' : '#e0e0e0'
-                  }}
-                  maxLength="10"
-                  required
-                />
+                  style={{ flex: 1, borderColor: phoneError ? '#dc3545' : '#e0e0e0' }}
+                  maxLength="10" required />
               </div>
-              {phoneError ? (
-                <small className="error-message">
-                  {phoneError}
-                </small>
-              ) : (
-                <small style={{ display: 'block', marginTop: '4px', color: '#666', fontSize: '12px' }}>
-                  9 ሲጀምር 10 ሲፈር (ለምሳሌ 9XX XXX XXX)
-                </small>
-              )}
+              {phoneError
+                ? <small className="error-message">{phoneError}</small>
+                : <small style={{ display: 'block', marginTop: '4px', color: '#666', fontSize: '12px' }}>
+                    9 ሲጀምር 10 ሲፈር (ለምሳሌ 9XX XXX XXX)
+                  </small>
+              }
             </div>
 
-            {/* Button Container */}
             <div className="button-container">
-              <button 
-                type="button" 
-                className="previous-btn"
-                onClick={handlePrevious}
-              >
-                ቀዳሚ
-              </button>
-              <button type="submit" className="next-btn">
-                ቀጣይ ደረጃ
-              </button>
+              <button type="button" className="previous-btn" onClick={handlePrevious}>ቀዳሚ</button>
+              <button type="submit" className="next-btn">ቀጣይ ደረጃ</button>
             </div>
           </form>
-
         </div>
       </main>
 
-      {/* ==================== FOOTER ==================== */}
-      <footer className="footer">
-        © 2026 Birr ኢትዮጵያ
-      </footer>
+      <footer className="footer">© 2026 Birr ኢትዮጵያ</footer>
     </div>
   );
 }
