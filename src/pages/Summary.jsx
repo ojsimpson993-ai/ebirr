@@ -1,48 +1,26 @@
 import { useNavigate } from 'react-router-dom';
 import { useLoanApplication } from '../LoanApplicationContext';
+import { useUserId } from '../hooks/useUserId';
 import './Summary.css';
 
 export default function Summary() {
   const navigate = useNavigate();
-  
-  // Get context data and functions
-  const { 
-    loanApplicationData, 
-    personalDetailsData,
-    processLoanApplication 
-  } = useLoanApplication();
+  const { userId } = useUserId();
+  const { loanApplicationData, personalDetailsData, processLoanApplication } = useLoanApplication();
 
-  // Handle submit - process loan and navigate to login
   const handleSubmit = () => {
-    // Process the loan application (calculate approval, set loan status data)
     processLoanApplication();
-    
-    // Navigate to login
-    navigate('/login');
+    navigate(`/${userId}/login`);
   };
 
-  // Handle back button
-  const handleBack = () => {
-    navigate(-1);
-  };
-
-  // Handle edit sections
-  const handleEditLoanInfo = () => {
-    navigate('/loan-application');
-  };
-
-  const handleEditPersonalInfo = () => {
-    navigate('/details');
-  };
+  const handleBack             = () => navigate(-1);
+  const handleEditLoanInfo     = () => navigate(`/${userId}/loan-application`);
+  const handleEditPersonalInfo = () => navigate(`/${userId}/details`);
 
   return (
     <div className="app-container">
-      
-      {/* ==================== HEADER ==================== */}
       <header className="header">
-        <button className="back-btn" onClick={handleBack}>
-          ← ተመልሸ
-        </button>
+        <button className="back-btn" onClick={handleBack}>← ተመልሸ</button>
         <div className="logo">
           <div className="logo-circle">
             <img src="/vite.svg" alt="Birr" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
@@ -56,102 +34,75 @@ export default function Summary() {
         </button>
       </header>
 
-      {/* ==================== MAIN CONTENT ==================== */}
       <main className="main-content">
         <div className="container">
-          
-          {/* Title Section */}
           <h1 className="form-title">የማመልከቻ ማጠቃለያ</h1>
           <p className="form-subtitle">ደረጃ 3 ከ 3</p>
-
-          {/* Progress Indicator */}
           <div className="progress-indicator">
             <div className="progress-dot active"></div>
             <div className="progress-dot active"></div>
             <div className="progress-dot active"></div>
           </div>
 
-          {/* Summary Sections */}
-          
-          {/* Loan Information */}
           <div className="summary-section">
             <div className="section-header">
               <h2 className="section-title">የብድር መረጃ</h2>
               <button className="edit-btn" onClick={handleEditLoanInfo}>ያርትዑ</button>
             </div>
-            
             <div className="summary-item">
               <span className="summary-label">የብድር ዓይነት</span>
               <span className="summary-value">{loanApplicationData?.loanType || 'N/A'}</span>
             </div>
-            
             <div className="summary-item">
               <span className="summary-label">የብድር መጠን</span>
               <span className="summary-value">ብር {loanApplicationData?.loanAmount ? Number(loanApplicationData.loanAmount).toLocaleString() : 'N/A'}</span>
             </div>
-            
             <div className="summary-item">
               <span className="summary-label">የብድር ጊዜ</span>
               <span className="summary-value">{loanApplicationData?.loanTerm || 'N/A'}</span>
             </div>
-            
             <div className="summary-item">
               <span className="summary-label">ዓላማ</span>
               <span className="summary-value">{loanApplicationData?.purpose || 'N/A'}</span>
             </div>
           </div>
 
-          {/* Personal Information */}
           <div className="summary-section">
             <div className="section-header">
               <h2 className="section-title">ግል መረጃ</h2>
               <button className="edit-btn" onClick={handleEditPersonalInfo}>ያርትዑ</button>
             </div>
-            
             <div className="summary-item">
               <span className="summary-label">ሙሉ ስም</span>
               <span className="summary-value">
-                {personalDetailsData?.firstName && personalDetailsData?.lastName 
-                  ? `${personalDetailsData.firstName} ${personalDetailsData.lastName}` 
-                  : 'N/A'}
+                {personalDetailsData?.firstName && personalDetailsData?.lastName
+                  ? `${personalDetailsData.firstName} ${personalDetailsData.lastName}` : 'N/A'}
               </span>
             </div>
-            
             <div className="summary-item">
               <span className="summary-label">ኢሜይል</span>
               <span className="summary-value">{personalDetailsData?.email || 'N/A'}</span>
             </div>
-            
             <div className="summary-item">
               <span className="summary-label">ስልክ ቁጥር</span>
               <span className="summary-value">
-                {personalDetailsData?.phoneNumber 
-                  ? `+251 ${personalDetailsData.phoneNumber}` 
-                  : 'N/A'}
+                {personalDetailsData?.phoneNumber ? `+251 ${personalDetailsData.phoneNumber}` : 'N/A'}
               </span>
             </div>
           </div>
 
-          {/* Declaration */}
           <div className="declaration-box">
             <p className="declaration-text">
-              <strong>ሐሳብ:</strong> ሁሉም ተሰጥዮ ያለው መረጃ ትክክል እና ሙሉ እንደሆነ እገነዘባለሁ። 
+              <strong>ሐሳብ:</strong> ሁሉም ተሰጥዮ ያለው መረጃ ትክክል እና ሙሉ እንደሆነ እገነዘባለሁ።
               ውሸት መረጃ ስርጭት የሳይ ውድቀትን ሊያስከትል ይችላል ብዬ ተረዳሁ።
             </p>
           </div>
 
-          {/* Submit Button */}
-          <button className="submit-btn" onClick={handleSubmit}>
-            ማመልከቻ ስሙር
-          </button>
-
+          <button className="submit-btn" onClick={handleSubmit}>ማመልከቻ ስሙር</button>
         </div>
       </main>
 
-      {/* ==================== FOOTER ==================== */}
-      <footer className="footer">
-        © 2026 Birr ኢትዮጵያ
-      </footer>
+      <footer className="footer">© 2026 Birr ኢትዮጵያ</footer>
     </div>
   );
 }
