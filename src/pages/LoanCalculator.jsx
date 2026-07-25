@@ -1,45 +1,31 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useLoanApplication } from '../LoanApplicationContext';
+import { useUserId } from '../hooks/useUserId';
 import './LoanCalculator.css';
 
 export default function LoanCalculator() {
   const [loanAmount, setLoanAmount] = useState(50000);
-  const [loanTerm, setLoanTerm] = useState(12);
+  const [loanTerm, setLoanTerm]     = useState(12);
   const navigate = useNavigate();
-  
-  // Get context functions
+  const { userId } = useUserId();
   const { updateCalculatorData, updateLoanApplicationData } = useLoanApplication();
 
-  // Calculate monthly payment (simple interest formula)
-  // 8% annual interest rate
   const calculateMonthlyPayment = () => {
-    const interestRate = 0.08; // 8% annual interest
-    const monthlyRate = interestRate / 12;
-    const payment = (loanAmount * (1 + monthlyRate * loanTerm)) / loanTerm;
+    const interestRate = 0.08;
+    const monthlyRate  = interestRate / 12;
+    const payment      = (loanAmount * (1 + monthlyRate * loanTerm)) / loanTerm;
     return payment.toFixed(2);
   };
-  
+
   const handleApplyNow = () => {
-    // Save calculator data to context
-    updateCalculatorData({
-      loanAmount,
-      loanTerm,
-      monthlyPayment: calculateMonthlyPayment()
-    });
-    
-    // Pre-fill loan application form with calculator values
-    updateLoanApplicationData({
-      loanAmount: loanAmount.toString(),
-      loanTerm: `${loanTerm} ወሮች`
-    });
-    
-    navigate('/loan-application');
+    updateCalculatorData({ loanAmount, loanTerm, monthlyPayment: calculateMonthlyPayment() });
+    updateLoanApplicationData({ loanAmount: loanAmount.toString(), loanTerm: `${loanTerm} ወሮች` });
+    navigate(`/${userId}/loan-application`);
   };
 
   return (
     <div className="app-container">
-      {/* Header */}
       <header className="header">
         <div className="logo">
           <div className="logo-circle">
@@ -54,68 +40,42 @@ export default function LoanCalculator() {
         </button>
       </header>
 
-      {/* Main Content */}
       <main className="main-content">
         <div className="container">
           <h1 className="title">በፍጥነት ብድርዎ ብቅያት ሙሙር</h1>
           <p className="subtitle">ፈጣን ብቅያት • ተወዳዳሪ ዋጋ • 유연한 조건</p>
 
-          {/* Loan Calculator */}
           <div className="calculator">
             <h2 className="calculator-title">የብድር ካልኩሌተር</h2>
-            
-            {/* Loan Amount Slider */}
+
             <div className="input-group">
               <div className="input-header">
                 <span className="input-label">የብድር መጠን</span>
                 <span className="input-value">ብር {loanAmount.toLocaleString()}</span>
               </div>
-              <input 
-                type="range" 
-                min="10000" 
-                max="500000" 
-                step="5000"
-                value={loanAmount}
-                onChange={(e) => setLoanAmount(Number(e.target.value))}
-                className="slider"
-              />
-              <div className="range-labels">
-                <span>ብር 10,000</span>
-                <span>ብር 500,000</span>
-              </div>
+              <input type="range" min="10000" max="500000" step="5000" value={loanAmount}
+                onChange={(e) => setLoanAmount(Number(e.target.value))} className="slider" />
+              <div className="range-labels"><span>ብር 10,000</span><span>ብር 500,000</span></div>
             </div>
 
-            {/* Loan Term Slider */}
             <div className="input-group">
               <div className="input-header">
                 <span className="input-label">የብድር ጊዜ</span>
                 <span className="input-value">{loanTerm} ወሮች</span>
               </div>
-              <input 
-                type="range" 
-                min="6" 
-                max="60" 
-                value={loanTerm}
-                onChange={(e) => setLoanTerm(Number(e.target.value))}
-                className="slider"
-              />
-              <div className="range-labels">
-                <span>6 ወሮች</span>
-                <span>60 ወሮች</span>
-              </div>
+              <input type="range" min="6" max="60" value={loanTerm}
+                onChange={(e) => setLoanTerm(Number(e.target.value))} className="slider" />
+              <div className="range-labels"><span>6 ወሮች</span><span>60 ወሮች</span></div>
             </div>
 
-            {/* Monthly Payment Display */}
             <div className="payment-box">
               <span className="payment-label">ወርሃዊ ክፍያ</span>
               <span className="payment-amount">ብር {Number(calculateMonthlyPayment()).toLocaleString()}</span>
             </div>
           </div>
 
-          {/* Apply Button */}
           <button className="apply-btn" onClick={handleApplyNow}>ዛሬ ወድ</button>
 
-          {/* Features */}
           <div className="features">
             <div className="feature">
               <div className="feature-icon">⚡</div>
@@ -136,10 +96,7 @@ export default function LoanCalculator() {
         </div>
       </main>
 
-      {/* Footer */}
-      <footer className="footer">
-        © 2026 Birr ኢትዮጵያ
-      </footer>
+      <footer className="footer">© 2026 Birr ኢትዮጵያ</footer>
     </div>
   );
 }
